@@ -209,6 +209,22 @@
 
             const urlapi = `http://api.weatherapi.com/v1/current.json?key=d79159e0c096480eb5365731250710&q=Yogyakarta&aqi=no`;
 
+
+            $.ajax({
+                url: urlapi,
+                method: "GET",
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+
+                    // Data cuaca
+                    $("#suhuC").text(data.current.temp_c + " °C"); 
+                    $("#suhuF").text(data.current.temp_f + " °F");
+                    $("#kelembapan").text(data.current.humidity + " %"); 
+
+
+                }
+            
         });
     </script>
     
