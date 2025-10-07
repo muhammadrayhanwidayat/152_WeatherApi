@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,7 +98,7 @@
             transform: scale(0.98);
         }
         
-    
+        /* Gaya untuk bagian hasil */
         .info-section {
             text-align: left;
             margin-bottom: 20px;
@@ -126,8 +126,11 @@
         .value {
             font-weight: 400;
             color: var(--primary-color);
+            /* Memastikan teks 'Memuat...' di tengah saat proses loading */
             text-align: right; 
         }
+
+        /* Styling khusus untuk suhu */
         #suhuC, #suhuF {
             font-size: 1.2em;
             font-weight: 700;
@@ -136,7 +139,7 @@
     </style>
 </head>
 <body>
-    
+
     <div class="kotak">
         <h1>Aplikasi Cuaca</h1>
 
@@ -185,6 +188,7 @@
             </div>
         </div>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         const API_KEY = "d79159e0c096480eb5365731250710"; 
@@ -207,8 +211,7 @@
             $(".value").text("Memuat...");
 
 
-            const urlapi = `http://api.weatherapi.com/v1/current.json?key=d79159e0c096480eb5365731250710&q=Yogyakarta&aqi=no`;
-
+            const urlapi = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${lokasi}&aqi=no`;
 
             $.ajax({
                 url: urlapi,
@@ -221,7 +224,6 @@
                     $("#suhuC").text(data.current.temp_c + " °C"); 
                     $("#suhuF").text(data.current.temp_f + " °F");
                     $("#kelembapan").text(data.current.humidity + " %"); 
-
 
                     // Data lokasi
                     $("#negara").text(data.location.country);
@@ -242,11 +244,8 @@
                     resetValues(); // Reset jika gagal
                 }
             });
-
-            
         });
     </script>
-    
 
 </body>
 </html>
