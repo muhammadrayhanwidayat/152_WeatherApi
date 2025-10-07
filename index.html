@@ -223,7 +223,26 @@
                     $("#kelembapan").text(data.current.humidity + " %"); 
 
 
+                    // Data lokasi
+                    $("#negara").text(data.location.country);
+                    $("#provinsi").text(data.location.region);
+                    $("#kota").text(data.location.name);
+                    $("#long").text(data.location.lon);
+                    $("#lat").text(data.location.lat);
+                },
+                error: function(err) {
+                    // Cek status error untuk pesan yang lebih spesifik
+                    let errorMsg = "Gagal mengambil data cuaca. Pastikan nama lokasi benar.";
+                    if (err.responseJSON && err.responseJSON.error && err.responseJSON.error.message) {
+                         errorMsg = "Error: " + err.responseJSON.error.message;
+                    }
+                    
+                    alert(errorMsg);
+                    console.log(err);
+                    resetValues(); // Reset jika gagal
                 }
+            });
+
             
         });
     </script>
